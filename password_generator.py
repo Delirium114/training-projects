@@ -9,25 +9,30 @@ digits = '1234567890'
 
 password_char = ''
 
-#---
-lenght_password = int(input("Введите длину пароля: "))
+#-----------------------------------------------------------------------------#
+length_password = int(input("Введите длину пароля: "))
 
-uppper_letters_input = input("Хотите ли вы включить заглавные буквы: ").lower()
-if uppper_letters_input.startswith('д'):
+
+upper_letters_input = input("Хотите ли вы включить заглавные буквы (да/нет): ").lower()
+if upper_letters_input.startswith('д'):
     password_char = password_char + eng_upper_letters
 
-lower_letters_input = input("Хотите ли вы включить строчные буквы: ").lower()
+lower_letters_input = input("Хотите ли вы включить строчные буквы (да/нет): ").lower()
 if lower_letters_input.startswith('д'):
     password_char = password_char + eng_lower_letters
 
-digits_input = input('Хотите ли вы включить цифры в свой пароль: ').lower()
+digits_input = input('Хотите ли вы включить цифры в свой пароль (да/нет): ').lower()
 if digits_input.startswith('д'):
     password_char = password_char + digits
+
+if not password_char:
+    print("Вы не выбрали ни одного типа символов для пароля. Завершение программы.")
+    exit()
 
 print()
 print('Ваш пароль: ',end='')
 
-for i in range(lenght_password):
+for i in range(length_password):
     password = random.choice(password_char)
     print(password,end='')
 
