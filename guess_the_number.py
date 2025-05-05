@@ -13,7 +13,7 @@ last_digit = 10
 
 
 # Пользователь вводит уровень
-user_input_level = int(input('В каком диапазоне ты хочешь поискать цифру:\n1)от 1 до 10\n2)от 1 до 50\n3)от 1 до 100\n'))
+user_input_level = int(input('В каком диапазоне ты хочешь поискать цифру:\n1)от 1 до 10\n2)от 1 до 50\n3)от 1 до 100\nУровень номер: '))
 
 if user_input_level == 1:
     print("Отлично! Ты выбрал первый уровень - самый легкий. Он идеально подойдет для начала ✯")
@@ -28,20 +28,29 @@ elif user_input_level == 3:
 random_digit = random.randint(1,last_digit)
 print(f"\nПрограмма загадала цифру от 1 до {last_digit}. Какую цифру ты введешь: ")
 
-user_input_digit = int(input())
+#user_input_digit = int(input())
 
-while attempt < 5 and user_input_digit != random_digit:
+while attempt < 5 :
 
+    user_input_digit = int(input(f"Попытка № {attempt}: "))
 
     if user_input_digit > random_digit:
         print('Твое число больше, попробуй поменьше')
-        attempt = attempt + 1
     elif user_input_digit < random_digit:
         print('Твое число меньше. Попробуй взять побольше')
-        attempt = attempt + 1
     else:
         print('Ура! Ты угадал. Ты большой молодец!')
-        print(f'Ты понадобилось {attempt} попыток')
+
+        if attempt == 1:
+            print(f"Тебе понадобилось всего {attempt} попытка")
+        elif 1 < attempt < 5:
+            print(f"Ты угадал за {attempt} попытки")
+        else:
+            print(f'Тебе понадобилось {attempt} попыток')
+
         break
 
-    user_input_digit = int(input())
+    attempt += 1
+
+if attempt >= 5:
+    print(f'\nК сожалению ты не смог отгадать. Было загадано число - {random_digit}')
