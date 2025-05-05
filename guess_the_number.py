@@ -3,7 +3,7 @@
 import random
 
 print("Добро пожаловать в программу по поиску цифр")
-print('Программа загадает число, твоя задача угадать число с трех пяти попыток')
+print('Программа загадает число, твоя задача угадать число пяти попыток')
 
 attempt = 1
 
@@ -30,7 +30,7 @@ print(f"\nПрограмма загадала цифру от 1 до {last_digit
 
 #user_input_digit = int(input())
 
-while attempt < 5 :
+while attempt <= 5 :
 
     user_input_digit = int(input(f"Попытка № {attempt}: "))
 
