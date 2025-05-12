@@ -1,9 +1,19 @@
-# Проект будильник - начат 11 мая на Макбук в Минеральных водах - Санаторий Елизавета
+# Проект будильник - начат 11 мая на Мак"%H:%M")бук в Минеральных водах - Санаторий Елизавета
 
 import datetime
 import time
 
-alarm_time = input("Введите время будильника (в формате ЧЧ:ММ): ")
+while True:
+
+    alarm_time = input("Введите время будильника (в формате ЧЧ:ММ): ")
+
+    try:
+        datetime.datetime.strptime(alarm_time,"%H:%M")
+        break
+
+    except ValueError:
+        print('Неверный формат времени')
+
 
 while True:
     now = datetime.datetime.now().strftime("%H:%M")
