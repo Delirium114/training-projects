@@ -6,37 +6,35 @@ def numbers_and_operation():
     number_one = int(input('Введите первое число: '))
     number_two = int(input('Введите второе число: '))
 
-    operation = input("Какую операция вы хотите произвести на числами (+ - * %): ")
+    operation = input("Какую операция вы хотите произвести на числами (+ - * %): \n")
 
     result = 0
 
     if operation == "+":
         result = number_one + number_two
-        return  print(f"{number_one} + {number_two} = {result} ")
-
-            #return f"{number_one} + {number_two} = {result} "
 
     elif operation == "-":
         result = number_one - number_two
-        return print(f"{number_one} - {number_two} = {result} ")
 
     elif operation == "*":
         result = number_one * number_two
-        return print(f"{number_one} * {number_two} = {result} ")
 
     elif operation == "%":
-        result = number_one / number_two
-        return print(f"{number_one} / {number_two} = {result} ")
+        if number_two == 0 or number_one == 0:
+            print('Делить на ноль нельзя')
+        else:
+            result = number_one / number_two
 
     else:
         print("Введите правильную операцию")
         return None
 
-
     with open("calc_log.txt", "a", encoding="utf-8") as file:
-        file.write(f"{number_one} {operation} {number_two} = {result}")
+        file.write(f"{number_one} {operation} {number_two} = {result} ")
+    print('Запись добавлена\n')
 
-    print('Запись добавлена')
+    print(f"{number_one} {operation} {number_two} = {result}")
+    return f"{number_one} {operation} {number_two} = {result}"
 
 # основной цикл работы
 
@@ -44,7 +42,8 @@ while True:
 
     print('1-Выполнить вычисление')
     print('2-Показать логи')
-    print('3-Выйти')
+    print('3-Очистить логи')
+    print('4-Выйти\n')
 
     choice_input = input('Выберите действия: ')
 
@@ -54,14 +53,21 @@ while True:
     elif choice_input == "2":
 
         try:
-            with open("calc_logs.txt", "r", encoding="utf-8") as file:
+            with open("calc_log.txt", "r", encoding="utf-8") as file:
                 print('Запись вычислений: ')
-                print(file.read())
+                for i in file:
+                    print(i.strip())
+                print()
 
         except FileNotFoundError:
             print('Записей не найдено')
 
     elif choice_input == "3":
+        with open("calc_log.txt", "w", encoding="utf-8") as file:
+            pass
+        print('Файл с логами был очищен\n')
+
+    elif choice_input == "4":
         print('Всего наилучшего')
 
     else:
